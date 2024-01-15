@@ -1,0 +1,1475 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A custom firmware solution for the Sonoff NSPanel using HA Blueprint.">
+      
+      
+      
+      
+        <link rel="prev" href="../nspanel_blank/">
+      
+      
+        <link rel="next" href="../tft_upload/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
+    
+    
+      
+        <title>How Do I? - NSPanel Custom Firmware with HA Blueprint</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#how-to" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="NSPanel Custom Firmware with HA Blueprint" class="md-header__button md-logo" aria-label="NSPanel Custom Firmware with HA Blueprint" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NSPanel Custom Firmware with HA Blueprint
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              How Do I?
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="lime"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://illuzn.github.com/NSPanel_HA_Blueprint/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Illuzn
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../get_started/" class="md-tabs__link">
+          
+  
+  Installation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../blueprint/" class="md-tabs__link">
+        
+  
+    
+  
+  Blueprint
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../addon_climate/" class="md-tabs__link">
+          
+  
+  Advanced Customization
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../error_initializing/" class="md-tabs__link">
+          
+  
+  Troubleshooting
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="NSPanel Custom Firmware with HA Blueprint" class="md-nav__button md-logo" aria-label="NSPanel Custom Firmware with HA Blueprint" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    NSPanel Custom Firmware with HA Blueprint
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://illuzn.github.com/NSPanel_HA_Blueprint/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Illuzn
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Installation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../get_started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Get Started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lovelace_ui" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transitioning from Lovelace UI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blueprint/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blueprint
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Advanced Customization
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced Customization
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../addon_climate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Addon Climate (Direct Heat/ Cooling Control)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../alarm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Alarm Control Panel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../customization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    General
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Troubleshooting
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../error_initializing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Error Initializing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../esphome/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ESPHome Build Issues
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nspanel_blank/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Firmware Upload Issues
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    How Do I?
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    How Do I?
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#community-contribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Community Contribution
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#topics-and-solutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Topics and Solutions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-create-issues-when-i-have-a-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to create "issues" when I have a problem
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How to create "issues" when I have a problem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-trace-after-reboot" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example trace after reboot
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-automations-blueprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example automations Blueprint
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-blueprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update Blueprint
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-esphome" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update ESPHome
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-tft" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update TFT
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notification-via-ha" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notification via HA
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#climate-control-with-relays" class="md-nav__link">
+    <span class="md-ellipsis">
+      Climate control with Relays
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#call-a-page-directly" class="md-nav__link">
+    <span class="md-ellipsis">
+      Call a Page Directly
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Call a Page Directly">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Pages
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entity-specific-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entity-Specific Pages
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notification-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notification Page
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wake-up-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      Wake-up Page
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#play-rtttl-sound" class="md-nav__link">
+    <span class="md-ellipsis">
+      Play RTTTL Sound
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-automations-via-input_boolean" class="md-nav__link">
+    <span class="md-ellipsis">
+      Start Automations via Input_Boolean
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#updating-wi-fi-settings-and-ota-passwords-in-esphome-with-this-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Updating Wi-Fi settings and OTA Passwords in ESPHome with This Project
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Updating Wi-Fi settings and OTA Passwords in ESPHome with This Project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-by-step-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step-by-Step Guide
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#important-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Important Notes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-the-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify the Update
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Tips
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tft_upload/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TFT Upload Issues
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../weather/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Weather
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="how-to">How-to</h1>
+<p>In this document, we collect important information, tips, and solutions related to various topics noticed over time.
+This is a community-driven resource, and we encourage everyone to contribute their knowledge.</p>
+<h2 id="community-contribution">Community Contribution</h2>
+<p>If you have a solution or tip to share, please contribute! Your knowledge can significantly help others in the community.
+You can write a short message with your findings, and we'll include it here.</p>
+<h2 id="topics-and-solutions">Topics and Solutions</h2>
+<p>Below are the topics covered in this document, each with relevant tips and solutions.</p>
+<ol>
+<li><a href="#how-to-create-issues-when-i-have-a-problem">How do I create "Issues" when I have a problem </a></li>
+<li><a href="#update-blueprint">Update Blueprint</a></li>
+<li><a href="#update-esphome">Update ESPHome</a></li>
+<li><a href="#update-tft">Update TFT</a></li>
+<li><a href="#notification-via-ha">Notification via HA</a></li>
+<li><a href="#climate-control-with-relays">Climate control with relays</a></li>
+<li><a href="#call-a-page-directly">Call a page directly</a></li>
+<li><a href="#play-rtttl-sound">Play RTTTL Sound</a></li>
+<li><a href="#start-automations-via-input_boolean">Start automations via Input_Boolean</a></li>
+<li><a href="#updating-wi-fi-settings-and-ota-passwords-in-esphome-with-this-project">Updating Wi-Fi and OTA passwords in ESPHome with this project</a></li>
+</ol>
+<h2 id="how-to-create-issues-when-i-have-a-problem">How to create "issues" when I have a problem</h2>
+<blockquote>
+<p><em><strong>To be able to solve your problem, it is important for us to have as much information as possible</strong></em>.</p>
+</blockquote>
+<ul>
+<li>Describe your problem as detailed as possible.</li>
+<li>Please write your ESPHome and Home Assistant version, as the version of files of this project (TFT, ESPHome and Blueprint).</li>
+<li>Please go to your automation and then to the "3 dots" and then to <em><strong>Edit as YAML</strong></em>.
+Copy the complete code and attach it to the ticket</li>
+<li>An important "helper" for solving problems is the trace of an automation.
+You can find the trace under <em><strong>Settings --&gt; Automations &amp; Scenes --&gt; your NSPanel automation --&gt; Traces (top right)</strong></em></li>
+</ul>
+<!-- markdownlint-disable MD028 -->
+<blockquote>
+<p>[!NOTE]
+TRACES! Please execute again what does not work and open the trace immediately afterwards.
+Often you have to open the trace after the reboot too.
+During the start up, most things are loaded.</p>
+<p>[!IMPORTANT]<br />
+In the trace you can see by the <em><strong>"orange "</strong></em> lines which way the automation has gone.
+Please tell us this path.
+Also, please take one or more screenshots and add them to your ticket.
+Especially important for us is where the <em><strong>"Orange "</strong></em> line ends, because most of the time this is also where the problem is.</p>
+<p>[!IMPORTANT]<br />
+When you have opened the trace, there is a <em><strong>"timestamp "</strong></em> at the top.
+It is important that you select the correct timestamp.</p>
+</blockquote>
+<!-- markdownlint-enable MD028 -->
+
+<h3 id="example-trace-after-reboot">Example trace after reboot</h3>
+<p><img alt="Bildschirmfoto 2022-11-27 um 14 54 58" src="https://user-images.githubusercontent.com/41958506/204139082-70d3a8d1-1c82-43cb-88f2-573f2e276a48.png" /></p>
+<h3 id="example-automations-blueprint">Example automations Blueprint</h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">YYXYYXYYX - NSPanel Configuration</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">use_blueprint</span><span class="p">:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nspanel_configuration.yaml</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">input</span><span class="p">:</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="nt">nspanel_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nspanel_dev</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DE</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nt">sync_value_ha</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">select_no</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nt">sync_slider_ha</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">select_no</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="nt">weather</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AccuWeather</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="nt">accuweather</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">home_wetter</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="nt">outdoortemp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sensor.terrasse_garage_motion_sensor_temperature</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="nt">humidity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sensor.kinderzimmer_lea_temperatur_sensor_humidity</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="nt">hotwatertemp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sensor.hotwater_temp</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="nt">hotwatercharge</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">switch.charge</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="nt">heatingsystemflame</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">binary_sensor.flamestatus</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="nt">climate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">climate.nspanel_buro</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="nt">left_button_entity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">light.haustur_spot_2</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span><span class="nt">right_button_entity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">light.haustur_spot_1</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="nt">entity01</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">light.buro_sideboard</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="nt">entity01_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Sideboard</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="nt">entity02</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cover.kuche_rollo</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="nt">entity02_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Küche Rollo</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="nt">entity03</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">switch.buro_dart_beleuchtung</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">    </span><span class="nt">entity03_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dart Licht</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="nt">delay</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">    </span><span class="nt">right_button_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Test 1</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">    </span><span class="nt">left_button_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Test 2</span>
+</span></code></pre></div>
+<h2 id="update-blueprint">Update Blueprint</h2>
+<blockquote>
+<p>[!IMPORTANT]
+To install a new version of the NSPanel, the Blueprint, ESPHome and the TFT must be updated!</p>
+</blockquote>
+<ol>
+<li>In Home Assistant, go to Settings &gt; Automation &amp; Scenes, select the tab Blueprints and find the blueprint named "NSPanel Configuration"</li>
+<li>Click the 3-dot menu and select "Re-import blueprint":
+  <img alt="image" src="https://github.com/Blackymas/NSPanel_HA_Blueprint/assets/94725493/afb433e8-f29c-4b3f-8d6b-16a12b181422" /></li>
+<li>Click "Re-import" button:
+  <img alt="image" src="https://github.com/Blackymas/NSPanel_HA_Blueprint/assets/94725493/1db36411-e5a4-4cef-bcef-575a08019a67" /></li>
+<li>Reload automations or restart Home Assistant.</li>
+<li>The new Blueprint is now available.
+Settings that have already been made are adopted.</li>
+<li>Please review the blueprint settings (under Automations tab) for new settings available with the new version.</li>
+</ol>
+<h2 id="update-esphome">Update ESPHome</h2>
+<!-- markdownlint-disable MD028 -->
+<blockquote>
+<p>[!IMPORTANT]
+To install a new version of the NSPanel, the Blueprint, ESPHome and the TFT must be updated!</p>
+<p>[!IMPORTANT]
+These instructions are for updating a panel where an older version of these files are already installed.</p>
+</blockquote>
+<!-- markdownlint-enable MD028 -->
+
+<p>These are the steps to flash your panel with an updated version from this project:</p>
+<ol>
+<li>
+<p>Go to the ESPHome dashboard (in your Home Assistant) and find the device you want to update.
+    Then click the 3-dot menu and select the option "Clean Build Files" to make sure you clean-up your system from the previous versions files:
+    <img alt="Clean Build Files menu" src="../pics/esphome_dashboard_clean_build_files.png" /></p>
+</li>
+<li>
+<p>When the clean-up process is done, click on <strong>Install</strong> button:
+    <img alt="Install button on Clean Build Files dialog" src="../pics/esphome_dashboard_clean_build_files_install_button.png" /></p>
+</li>
+<li>
+<p>As your panel is probably already connected to the Wi-Fi, you may select to install <strong>Wirelessly</strong>,
+    as it is much easier and you don't have to unassemble your panel.
+    <img alt="image" src="https://github.com/Blackymas/NSPanel_HA_Blueprint/assets/94725493/c9b53549-c78a-4a02-bcde-31582905d0c4" /></p>
+</li>
+</ol>
+<p>The new firmware will be built and then flashed to your panel, which will restart at the end of this process and start sending logs again:</p>
+<p><img alt="image" src="https://github.com/Blackymas/NSPanel_HA_Blueprint/assets/94725493/e63dcb4a-ef74-4665-9897-455e02950964" /></p>
+<h2 id="update-tft">Update TFT</h2>
+<blockquote>
+<p>[!IMPORTANT]
+These instructions are for updating a panel where an older version of these files are already installed.</p>
+</blockquote>
+<p>The display can be updated via the UI:</p>
+<ol>
+<li>Go to <strong><em>Settings --&gt; Devices &amp; Services --&gt; Integrations</em></strong> , select the display under the ESPHome integration.</li>
+<li>Press the switch "Update TFT Display" under Configuration.</li>
+<li>The display starts the update process and then restarts.</li>
+</ol>
+<h2 id="notification-via-ha">Notification via HA</h2>
+<p>To show a notification on the NSPAnel, the following service call can be used:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">esphome.panelname_notification_show</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nt">data</span><span class="p">:</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Example text</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Example text</span>
+</span></code></pre></div>
+<p>To clear any notifications, the following service call can be used:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">esphome.panelname_notification_clear</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+</span></code></pre></div>
+<p>To use the notifications in an automation, again simply use the service call as shown in the example below:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">single</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nt">trigger</span><span class="p">:</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">state</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nt">entity_id</span><span class="p">:</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">binary_sensor.motion_detector</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="nt">to</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;on&quot;</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="nt">action</span><span class="p">:</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">esphome.panelname_notification_show</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="nt">data</span><span class="p">:</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">      </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Motion Detected</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">      </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Example for a Notification on the Panel Screen</span>
+</span></code></pre></div>
+<h2 id="climate-control-with-relays">Climate control with Relays</h2>
+<blockquote>
+<p>Attention!! Although these instructions are still valid, since v4.0 there is a better way to setup a climate control using the panel's relays an the <a href="../addon_climate/">add-on climate</a>.</p>
+</blockquote>
+<p>In order to use the NSPanel to control a radiator or underfloor heating, at least one Generic Thermostat must be created in the HA.
+More information can be found here: https://www.home-assistant.io/integrations/generic_thermostat/</p>
+<p>Example configuration Generic Thermostat:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">climate</span><span class="p">:</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">generic_thermostat</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Study</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="nt">heater</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">switch.study_heater</span><span class="w"> </span><span class="c1">## Wenn das NSPanel Relays den Heizkreis Regler schaltet, kann dieses hier definiert werden</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="nt">target_sensor</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sensor.study_temperature</span><span class="w"> </span><span class="c1">## Hier kann der NSPanel Sensor verwendet werden</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="nt">min_temp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="nt">max_temp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">21</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="nt">ac_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="nt">target_temp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">17</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">    </span><span class="nt">cold_tolerance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.3</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span><span class="nt">hot_tolerance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">    </span><span class="nt">min_cycle_duration</span><span class="p">:</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">      </span><span class="nt">seconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">    </span><span class="nt">keep_alive</span><span class="p">:</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">      </span><span class="nt">minutes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">    </span><span class="nt">initial_hvac_mode</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;off&quot;</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">    </span><span class="nt">away_temp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">    </span><span class="nt">precision</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span>
+</span></code></pre></div>
+<p>Afterwards, the climate.entity must be assigned accordingly in the panel configuration.</p>
+<h2 id="call-a-page-directly">Call a Page Directly</h2>
+<p>In user-created automations within Home Assistant, there are scenarios where you might want to automatically display a specific page on your device's screen.
+The following services enable this functionality:</p>
+<h3 id="basic-pages">Basic Pages</h3>
+<p>To open a specific page, you can utilize the <code>esphome.xxxxxx_send_command_printf</code> service.
+Here's an example that demonstrates how to open the <code>home</code> page:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">esphome.xxxxx_send_command_printf</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nt">data</span><span class="p">:</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nt">cmd</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">page home</span>
+</span></code></pre></div>
+<p>Currently, the following pages can be accessed using this method:</p>
+<ul>
+<li><code>buttonpage01</code></li>
+<li><code>buttonpage02</code></li>
+<li><code>buttonpage03</code></li>
+<li><code>buttonpage04</code></li>
+<li><code>entitypage01</code></li>
+<li><code>entitypage02</code></li>
+<li><code>entitypage03</code></li>
+<li><code>entitypage04</code></li>
+<li><code>home</code></li>
+<li><code>qrcode</code></li>
+<li><code>screensaver</code></li>
+</ul>
+<p>For instance, to directly navigate to button page 2, replace <code>home</code> in the command with <code>buttonpage02</code>:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">esphome.xxxxx_send_command_printf</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nt">data</span><span class="p">:</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="nt">cmd</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">page buttonpage02</span>
+</span></code></pre></div>
+<h3 id="entity-specific-pages">Entity-Specific Pages</h3>
+<p>For entity-specific pages, a more detailed call is required as it involves specifying the entity.
+You can use the service <code>esphome.xxxxx_open_entity_settings_page</code> as shown in the following example:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">esphome.xxxxx_open_entity_settings_page</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nt">data</span><span class="p">:</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="nt">page</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">climate</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="nt">page_label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">My thermostat</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span><span class="nt">page_icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">\uE237</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">  </span><span class="nt">page_icon_color</span><span class="p">:</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">255</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">  </span><span class="nt">entity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">climate.my_thermostat</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">  </span><span class="nt">back_page</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">home</span>
+</span></code></pre></div>
+<p>The required parameters for this service are as follows:</p>
+<ul>
+<li><strong>page</strong>: The page to be opened, typically the same as the domain of the entity (e.g., <code>climate</code>, <code>cover</code>, <code>light</code>).</li>
+<li><strong>page_label</strong>: The title of the page, usually the friendly name of the entity.</li>
+<li><strong>page_icon</strong>: The UTF-8 code for the icon to be displayed at the top left of the page.
+Supported icons are listed on the <a href="https://htmlpreview.github.io/?https://github.com/jobr99/Generate-HASP-Fonts/blob/master/cheatsheet.html">HASwitchPlate Material Design Icons</a> page.
+The code is a 4-character hex string found near the icon in the list. Prefix the icon code with <code>\u</code> to indicate it's a UTF-8 hex code.</li>
+<li><strong>page_icon_color</strong>: An RGB array with values from 0 to 255 for red, green, and blue.
+ESPHome automatically converts this array to a <a href="https://en.wikipedia.org/wiki/List_of_monochrome_and_RGB_color_formats#16-bit_RGB_(also_known_as_RGB565)">16-bit RGB (RGB565)</a> format,
+which may lead to some color distortion.</li>
+<li><strong>entity</strong>: The <code>entity_id</code> from Home Assistant for the relevant entity.</li>
+<li><strong>back_page</strong>: The page to return to when the detailed page is manually closed or after a page timeout.
+Only <a href="#basic-pages">Basic pages</a> are supported.</li>
+</ul>
+<h3 id="notification-page">Notification Page</h3>
+<p>To display the notification page, use the <code>esphome.xxxxx_notification_show</code> service as shown below:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">esphome.xxxxx_notification_show</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nt">data</span><span class="p">:</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Notification</span><span class="nv"> </span><span class="s">title&quot;</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Attention!</span><span class="nv"> </span><span class="s">This</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">placeholder</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">your</span><span class="nv"> </span><span class="s">notification</span><span class="nv"> </span><span class="s">message.&quot;</span>
+</span></code></pre></div>
+<h3 id="wake-up-page">Wake-up Page</h3>
+<p>You may have configured a specific <strong>Wake-up page</strong> on your device.
+This page is automatically displayed after the device boots up or wakes up from sleep mode (such as the <code>screensaver</code> page).
+To open this page, you have two options:</p>
+<ol>
+<li>Directly call the page if it is one of the <a href="#basic-pages">Basic pages</a>.</li>
+<li>Use the <code>esphome.xxxxx_wake_up</code> service as follows:</li>
+</ol>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">esphome.xxxxx_wake_up</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nt">data</span><span class="p">:</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span><span class="nt">reset_timer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code>The `reset_timer` parameter allows you to control the **Timeout sleep timer**.
+Setting it to `true` resets the timer, while `false` continues counting down from the current value.
+</code></pre></div>
+<p>The <strong>Wake-up</strong> service differs from a normal page call in that it only opens the wake-up page if the panel is in sleep mode.
+If the panel is already active, the current page remains displayed.
+This feature is particularly useful in conjunction with a motion sensor to wake up your panel automatically.
+By repeatedly calling this service whenever motion is detected, the panel can be either woken up or have its sleep timeout timer reset (if <code>reset_timer</code> is set to <code>true</code>).</p>
+<h2 id="play-rtttl-sound">Play RTTTL Sound</h2>
+<p>HA can send a RTTTL to the NSPanel, custom melodies are possible.</p>
+<p>The use this function, the following service is called: <strong><em>nspanel_play_rtttl</em></strong> </p>
+<p>You can find many RTTTL strings on the web, the important thing is that they must start with the name and then a colon.</p>
+<p>Here is an example:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>The Simpsons:d=4,o=5,b=160:c.6,e6,f#6,8a6,g.6,e6,c6,8a,8f#,8f#,8f#,2g,8p,8p,8f#,8f#,8f#,8g,a#.,8c6,8c6,8c6,c6
+</span></code></pre></div>
+<p><img alt="image-20230320222454441" src="../pics/image-20230320222454441.png" /></p>
+<p>More information: https://esphome.io/components/rtttl.html#common-beeps</p>
+<p>More songs: https://codebender.cc/sketch:109888#RTTTL%20Songs.ino</p>
+<h2 id="start-automations-via-input_boolean">Start Automations via Input_Boolean</h2>
+<p>Although the NSPanel can execute scripts directly over the buttons, there is also the possibility of starting automations directly by the means of Input_Boolean.</p>
+<p>For this, a helper must first be created under <strong><em>Settings --&gt; Devices&amp;Services --&gt; Helpers</em></strong></p>
+<p>Now add the created Input_Boolean as a trigger in the desired automation under State.</p>
+<p>In the last step, assign the trigger to a button in the Panel Config.</p>
+<h2 id="updating-wi-fi-settings-and-ota-passwords-in-esphome-with-this-project">Updating Wi-Fi settings and OTA Passwords in ESPHome with This Project</h2>
+<h3 id="overview">Overview</h3>
+<p>When you update your Wi-Fi password in a device with firmware from our project,
+it's important to remember that the <code>wifi_password</code> substitution is used for both Wi-Fi and OTA updates (and a few more places that are not relevant now).
+Failing to update both simultaneously can lead to connection issues.</p>
+<h3 id="step-by-step-guide">Step-by-Step Guide</h3>
+<ol>
+<li><strong>Prepare Your Device for Update</strong></li>
+<li>
+<p>Ensure your device is connected to your computer and is accessible via your current Wi-Fi network.</p>
+</li>
+<li>
+<p><strong>Update OTA Password First</strong></p>
+</li>
+<li>Open your panel's YAML.</li>
+<li>
+<p>Add the following in the customization area:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nt">esphome</span><span class="p">:</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span><span class="nt">on_boot</span><span class="p">:</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">priority</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">600</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">      </span><span class="nt">then</span><span class="p">:</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">lambda</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|-</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">            </span><span class="no">id(my_ota).set_auth_password(&quot;Your new Wi-Fi password&quot;);</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="nt">ota</span><span class="p">:</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">  </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Your</span><span class="nv"> </span><span class="s">current</span><span class="nv"> </span><span class="s">Wi-Fi</span><span class="nv"> </span><span class="s">password&quot;</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my_ota</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Flash your device.
+It will use the current password for this flash and will inform your device to start using the new password for the next OTA.</p>
+</li>
+<li>When your device starts, <strong>remove the lines above</strong>.</li>
+<li>Find the <code>wifi_ssid</code> and <code>wifi_password</code> key in the <code>substitutions</code> area (usually at the beginning of the file) and change it to your new Wi-Fi password.
+    If that is point to <code>!secret</code>, you will have to edit it in your <code>secrets.yaml</code> file instead.</li>
+<li>
+<p>Flash your device again with the updated YAML.
+It will use the current Wi-Fi to connect to your device and the new Wi-Fi password as the OTA password, then will inform your device to connect to the Wi-Fi with the new settings.</p>
+</li>
+<li>
+<p><strong>Update Wi-Fi Settings in Your Access Point</strong></p>
+</li>
+</ol>
+<h3 id="important-notes">Important Notes</h3>
+<ul>
+<li>The device will still be using the old Wi-Fi settings for this update.
+If you've already changed your Wi-Fi network settings, this step will fail.</li>
+<li><strong>Troubleshooting: Unable to Connect via Wi-Fi</strong></li>
+<li>If your device cannot connect to Wi-Fi due to a password or SSID change, you will need to flash the device via a serial connection.</li>
+<li>Connect your device to your computer using a USB-to-Serial adapter.</li>
+<li>Use the ESPHome flasher tool to upload the new configuration.</li>
+<li>In this case, don't worry about the OTA password, as it's not required when flashing via serial.</li>
+</ul>
+<h3 id="verify-the-update">Verify the Update</h3>
+<ul>
+<li>Once the new configuration is uploaded, your device should automatically connect to your Wi-Fi network with the new settings.</li>
+<li>Verify that OTA updates are working with the new password.</li>
+</ul>
+<h3 id="additional-tips">Additional Tips</h3>
+<ul>
+<li><strong>Backup Your Configuration:</strong> Always keep a backup of your ESPHome configuration files.</li>
+<li><strong>Network Accessibility:</strong> Ensure your device remains within your Wi-Fi network's range during the update process.</li>
+<li><strong>Serial Flashing:</strong> Familiarize yourself with the process of flashing via serial, as it's a reliable fallback method.</li>
+</ul>
+<h3 id="conclusion">Conclusion</h3>
+<p>By carefully updating both your Wi-Fi settings and OTA passwords in your ESPHome configuration, you can avoid connection issues.
+Remember to always back up your configuration and be prepared to use a serial connection if Wi-Fi connectivity is lost.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "navigation.top", "search.suggest", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7c377c4.min.js"></script>
+      
+    
+  </body>
+</html>

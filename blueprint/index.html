@@ -1,0 +1,1525 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A custom firmware solution for the Sonoff NSPanel using HA Blueprint.">
+      
+      
+      
+      
+        <link rel="prev" href="../get_started/">
+      
+      
+        <link rel="next" href="../addon_climate/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
+    
+    
+      
+        <title>Blueprint - NSPanel Custom Firmware with HA Blueprint</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#blueprint-automation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="NSPanel Custom Firmware with HA Blueprint" class="md-header__button md-logo" aria-label="NSPanel Custom Firmware with HA Blueprint" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NSPanel Custom Firmware with HA Blueprint
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Blueprint
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="lime"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://illuzn.github.com/NSPanel_HA_Blueprint/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Illuzn
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../get_started/" class="md-tabs__link">
+          
+  
+  Installation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  Blueprint
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../addon_climate/" class="md-tabs__link">
+          
+  
+  Advanced Customization
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../error_initializing/" class="md-tabs__link">
+          
+  
+  Troubleshooting
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="NSPanel Custom Firmware with HA Blueprint" class="md-nav__button md-logo" aria-label="NSPanel Custom Firmware with HA Blueprint" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    NSPanel Custom Firmware with HA Blueprint
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://illuzn.github.com/NSPanel_HA_Blueprint/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Illuzn
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Installation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../get_started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Get Started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lovelace_ui" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transitioning from Lovelace UI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Blueprint
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Blueprint
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic settings
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nspanel-device-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      NSPanel device (REQUIRED)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#language-for-nspanel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Language for NSPanel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#date-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Date format
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Time format
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delay-to-avoid-synchronization-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Delay to avoid synchronization problems
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#weather-and-temperature" class="md-nav__link">
+    <span class="md-ellipsis">
+      Weather and Temperature
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Weather and Temperature">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#weather-entity-from-ha" class="md-nav__link">
+    <span class="md-ellipsis">
+      Weather entity from HA
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outdoor-temperature-sensor-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Outdoor temperature Sensor (Optional)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#indoor-temperature-sensor-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Indoor Temperature Sensor (Optional)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#home-page-sensor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Home page - Sensor
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Home page - Sensor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sensor-01-03-entity-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sensor 01-03 - Entity (Optional)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#home-page-chips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Home page - Chips
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Home page - Chips">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chip-01-07-entity-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chip 01-07 - Entity (Optional)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#home-page-custom-buttons" class="md-nav__link">
+    <span class="md-ellipsis">
+      Home page - Custom buttons
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Home page - Custom buttons">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-button-01-06-entity-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom button 01-06 - Entity (Optional)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alarm-control-panel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alarm Control Panel
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#climate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Climate
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Climate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#climate-to-control-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Climate to Control (Optional)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#qr-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      QR Code
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="QR Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#activate-qr-code-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Activate QR Code (Optional)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qr-code-content-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      QR Code content (Optional)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="QR Code content (Optional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-buttons" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware Buttons
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hardware Buttons">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#activate-relay-x-local-fallback-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Activate Relay x local Fallback (Optional)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leftright-hardware-button-entity-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Left/Right Hardware Button - Entity (Optional)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leftright-hardware-button-name-label-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Left/Right Hardware Button Name - Label (Optional)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leftright-hardware-button-hold-assignment-value-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Left/Right Hardware Button hold assignment - VALUE (optional)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leftright-hardware-button-custom-hold-action-value-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Left/Right Hardware Button custom hold action - VALUE (Optional)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#button-page-01-04" class="md-nav__link">
+    <span class="md-ellipsis">
+      Button Page 01-04
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Button Page 01-04">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#button-page-01-04-name-label-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Button Page 01-04 name - LABEL (Optional)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buttons-01-32-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Buttons 01 - 32 (Optional)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Buttons 01 - 32 (Optional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eu-and-us-landscape-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      EU and US landscape models:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      US model:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entity-page-01-04" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entity Page 01-04
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Entity Page 01-04">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#activate-entity-page-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Activate Entity Page (Optional)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entity-page-01-04-name-label-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entity Page 01-04 name - LABEL (Optional)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entity-01-32-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entity 01 - 32 (Optional)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-screenshots" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Screenshots
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Advanced Customization
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced Customization
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../addon_climate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Addon Climate (Direct Heat/ Cooling Control)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../alarm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Alarm Control Panel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../customization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    General
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Troubleshooting
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../error_initializing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Error Initializing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../esphome/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ESPHome Build Issues
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nspanel_blank/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Firmware Upload Issues
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../howto/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How Do I?
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tft_upload/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TFT Upload Issues
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../weather/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Weather
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="blueprint-automation">Blueprint Automation</h1>
+<p>This article covers the settings in the Blueprint Automation.</p>
+<p>The Blueprint Automation is the central configuration element of this solution for the NSPanel.</p>
+<p>In principle, the setup of the automation is self-explanatory.
+The individual elements of the Blueprint are described below.</p>
+<p>It is possible to change both the color of the labels and the icons for most of the elements on each screen.</p>
+<p>On the blueprint settings, you will be able to select any of the MDI icons supported by Home Assistant, however, your panel will only support the icons available on the <a href="https://htmlpreview.github.io/?https://github.com/jobr99/Generate-HASP-Fonts/blob/master/cheatsheet.html">HASwitchPlate Material Design Icons</a>.</p>
+<p>For an easier overview, the menu items "Icon Color" and "Label Color" will not be described separately in the following documentation.</p>
+<h2 id="basic-settings">Basic settings</h2>
+<h3 id="nspanel-device-required">NSPanel device (REQUIRED)</h3>
+<p>You will be presented with a list of all of your ESPHome ESP32 devices and you must select your panel from the list.</p>
+<p>This is technically the only required field, as basic functionality will be available when the Blueprint knows to which panel it have to send the settings.</p>
+<blockquote>
+<p>[!NOTE]
+You cannot have more than one blueprint based automation per each panel</p>
+</blockquote>
+<h3 id="language-for-nspanel">Language for NSPanel</h3>
+<p>The language can be selected via the drop-down menu.</p>
+<p>Currently around 30 languages are supported, but if you cannot find your language there,
+please create a <a href="https://github.com/Blackymas/NSPanel_HA_Blueprint/issues/new">new feature request</a> and we will be happy to help.</p>
+<h3 id="date-format">Date format</h3>
+<p>Select how you want to see the date displayed on your panel (Home page and weather pages are affected).</p>
+<h3 id="time-format">Time format</h3>
+<p>Select how you want to see the time displayed on your panel's Home page.</p>
+<h3 id="delay-to-avoid-synchronization-problems">Delay to avoid synchronization problems</h3>
+<p>If the Wi-Fi signal is poor, you may have issues when loading some pages.
+If this happens, try to increase this delay as that may help.</p>
+<h2 id="weather-and-temperature">Weather and Temperature</h2>
+<h3 id="weather-entity-from-ha">Weather entity from HA</h3>
+<p>Select a Weather entity to use.</p>
+<p>Most of the weather integrations are supported, however some may be able to provide more information than others.</p>
+<p>We run all of our tests with "Accuweather", so the parameters shown on the panel are targetting this integration and will be shown with your integration when available.</p>
+<h3 id="outdoor-temperature-sensor-optional">Outdoor temperature Sensor (Optional)</h3>
+<p>Optionally, the value of an outdoor temperature sensor can be used here.
+If no separate sensor is used, the value of the weather integration will be used.</p>
+<h3 id="indoor-temperature-sensor-optional">Indoor Temperature Sensor (Optional)</h3>
+<p>An indoor temperature sensor is not necessary.
+Leave the field empty if you want to use the temperature sensor of the NSPanel.
+If the value of the sensor needs to be corrected, this can be done via the temperature correction for the NSPanel under HA Devices.</p>
+<h2 id="home-page-sensor">Home page - Sensor</h2>
+<h3 id="sensor-01-03-entity-optional">Sensor 01-03 - Entity (Optional)</h3>
+<p>Up to three sensors can be displayed on the home screen.
+Select the corresponding HA entity.</p>
+<h2 id="home-page-chips">Home page - Chips</h2>
+<h3 id="chip-01-07-entity-optional">Chip 01-07 - Entity (Optional)</h3>
+<p>Used to display HA entities on the home screen.
+For example to display the status of a specific switch on the NSPanel.</p>
+<h2 id="home-page-custom-buttons">Home page - Custom buttons</h2>
+<h3 id="custom-button-01-06-entity-optional">Custom button 01-06 - Entity (Optional)</h3>
+<p>Your panel will show 10 buttons on the Home page.
+4 of those are fixed for Notifications, QR Code, Entities pages and Alarm, but you have additional 6 custom buttons that can be assigned to different entities from your Home Assistant.
+The behavior of these buttons will depend on the entity's domain (light, media player, etc).</p>
+<h2 id="alarm-control-panel">Alarm Control Panel</h2>
+<p>An alarm control panel entity can be controlled by your panel.
+When you assign the entity here, it's icon will be shown as a button on the Home page.</p>
+<h2 id="climate">Climate</h2>
+<h3 id="climate-to-control-optional">Climate to Control (Optional)</h3>
+<p>Here you select the main climate entity controlled by your panel.
+It's temperature will be used on the Home page and by clicking on that value you will be able to control the climate settings.</p>
+<p>You can optionally use your panel to control a climate system locally, using it's temperature sensor and relays.
+You will find more details about this on the Add-on Climate docummentation.</p>
+<p>If you are using the Add-on Climate, it will create a climate entity in your panel's device page.
+You still have to select that entity on this field in the blueprint settings to have it used as your main climate.</p>
+<p>Additional climate entities can be assigned to buttons and will be explained later in this documment.</p>
+<p>On the blueprint settings, you will also find settings for sensors and custom buttons to be shown on all the climate pages.</p>
+<h2 id="qr-code">QR Code</h2>
+<h3 id="activate-qr-code-optional">Activate QR Code (Optional)</h3>
+<p>Activates the QR Code page and shows the QR Code button on the Home page.</p>
+<h3 id="qr-code-content-optional">QR Code content (Optional)</h3>
+<p>String, which is shown as a QR Code on the NSPanel.
+This can be a simple text, a URL or could also be used for a simplified login to the Wi-Fi.
+Here is an example (simply change SSID and password to your credentials and either use "WPA" or "WEP"):</p>
+<p><code>Wi-Fi:S:SSID;T:WPA/WEP;P:PASSWORD;;</code></p>
+<h4 id="example">Example:</h4>
+<p>For a network with the following parameters:
+- <strong>SSID:</strong> my_ssid
+- <strong>Pass:</strong> MySecurePa$$w0rd
+- <strong>Type:</strong> WPA</p>
+<p>Your QR code string will look like this:</p>
+<p><code>Wi-Fi:S:my_ssid;T:WPA;P:MySecurePa$$w0rd;;</code></p>
+<p>For more details about these specifications, please visit the <a href="https://www.wi-fi.org/system/files/WPA3%20Specification%20v3.1.pdf#page=24">WPA3™ Specification v3.1, chapter 7</a>.</p>
+<h2 id="hardware-buttons">Hardware Buttons</h2>
+<h3 id="activate-relay-x-local-fallback-optional">Activate Relay x local Fallback (Optional)</h3>
+<p>Normally, the internal relays of the NSPanels are triggered via HA.
+If the NSPanel loses Wi-Fi connection or HA is down, the hardware button can then switch the corresponding relay directly.</p>
+<h3 id="leftright-hardware-button-entity-optional">Left/Right Hardware Button - Entity (Optional)</h3>
+<p>The entity that should be switched with the left/right hardware button.</p>
+<h3 id="leftright-hardware-button-name-label-optional">Left/Right Hardware Button Name - Label (Optional)</h3>
+<p>Text on the screen above the corresponding hardware button (home screen).</p>
+<h3 id="leftright-hardware-button-hold-assignment-value-optional">Left/Right Hardware Button hold assignment - VALUE (optional)</h3>
+<p>Selection of what action should happen when the button is pressed for a longer time.</p>
+<h3 id="leftright-hardware-button-custom-hold-action-value-optional">Left/Right Hardware Button custom hold action - VALUE (Optional)</h3>
+<p>Selection of the action to start when holding the button.</p>
+<h2 id="button-page-01-04">Button Page 01-04</h2>
+<h3 id="button-page-01-04-name-label-optional">Button Page 01-04 name - LABEL (Optional)</h3>
+<p>Text on the respective button screens.</p>
+<h3 id="buttons-01-32-optional">Buttons 01 - 32 (Optional)</h3>
+<p>The buttons can be accessed by swiping on the Home Screen and their functions are completely identical.
+Either the individual button pages can be accessed one after the other by swiping to the left, or the button pages can be accessed directly by swiping up, down or to the right.</p>
+<p>The buttons are numbered as follows:</p>
+<h4 id="eu-and-us-landscape-models">EU and US landscape models:</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Button Page 1</th>
+<th style="text-align: center;">Button Page 2</th>
+<th style="text-align: center;">Button Page 3</th>
+<th style="text-align: center;">Button Page 4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Row 1</td>
+<td style="text-align: center;">01 02 03 04</td>
+<td style="text-align: center;">09 10 11 12</td>
+<td style="text-align: center;">17 18 19 20</td>
+<td style="text-align: center;">25 26 27 28</td>
+</tr>
+<tr>
+<td style="text-align: center;">Row 2</td>
+<td style="text-align: center;">05 06 07 08</td>
+<td style="text-align: center;">13 14 15 16</td>
+<td style="text-align: center;">21 22 23 24</td>
+<td style="text-align: center;">29 30 31 32</td>
+</tr>
+</tbody>
+</table>
+<h4 id="us-model">US model:</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Button Page 1</th>
+<th style="text-align: center;">Button Page 2</th>
+<th style="text-align: center;">Button Page 3</th>
+<th style="text-align: center;">Button Page 4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Row 1</td>
+<td style="text-align: center;">01 &nbsp;&nbsp;&nbsp; 02</td>
+<td style="text-align: center;">09 &nbsp;&nbsp;&nbsp; 10</td>
+<td style="text-align: center;">17 &nbsp;&nbsp;&nbsp; 18</td>
+<td style="text-align: center;">25 &nbsp;&nbsp;&nbsp; 26</td>
+</tr>
+<tr>
+<td style="text-align: center;">Row 2</td>
+<td style="text-align: center;">03 &nbsp;&nbsp;&nbsp; 04</td>
+<td style="text-align: center;">11 &nbsp;&nbsp;&nbsp; 12</td>
+<td style="text-align: center;">19 &nbsp;&nbsp;&nbsp; 20</td>
+<td style="text-align: center;">27 &nbsp;&nbsp;&nbsp; 28</td>
+</tr>
+<tr>
+<td style="text-align: center;">Row 3</td>
+<td style="text-align: center;">05 &nbsp;&nbsp;&nbsp; 06</td>
+<td style="text-align: center;">13 &nbsp;&nbsp;&nbsp; 14</td>
+<td style="text-align: center;">21 &nbsp;&nbsp;&nbsp; 22</td>
+<td style="text-align: center;">29 &nbsp;&nbsp;&nbsp; 30</td>
+</tr>
+<tr>
+<td style="text-align: center;">Row 4</td>
+<td style="text-align: center;">07 &nbsp;&nbsp;&nbsp; 08</td>
+<td style="text-align: center;">15 &nbsp;&nbsp;&nbsp; 16</td>
+<td style="text-align: center;">23 &nbsp;&nbsp;&nbsp; 24</td>
+<td style="text-align: center;">31 &nbsp;&nbsp;&nbsp; 32</td>
+</tr>
+</tbody>
+</table>
+<p>When the respective button is pressed, a toggle action is executed or the corresponding page is automatically opened, e.g.
+the cover control for covers, etc.
+For 2 state buttons (where toggle is the default action), a long press in the button will open it's corresponding page, when supported.</p>
+<p>For each button an own name can be specified optionally.</p>
+<p>All buttons offer the possibility to optionally confirm the execution of the action.
+This can be activated or deactivated separately for each button via <em>"Confirm execution of the button press"</em>.</p>
+<h2 id="entity-page-01-04">Entity Page 01-04</h2>
+<h3 id="activate-entity-page-optional">Activate Entity Page (Optional)</h3>
+<p>This option activates the entity pages on the Home Screen.
+The entity pages can be used for example to display values or statuses of entities on the individual pages.</p>
+<h3 id="entity-page-01-04-name-label-optional">Entity Page 01-04 name - LABEL (Optional)</h3>
+<p>Naming of the corresponding Entity Screens.</p>
+<h3 id="entity-01-32-optional">Entity 01 - 32 (Optional)</h3>
+<p>The entity pages can be accessed by pressing the symbol on the Home Screen and their functions are completely identical.</p>
+<p>The entities are numbered as follows:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Entity page</th>
+<th style="text-align: center;">Entities shown</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">01 to 08</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">09 to 16</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">17 to 24</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">25 to 32</td>
+</tr>
+</tbody>
+</table>
+<p>Additionally there is the possibility to choose an icon of your choice for the Entities button on the Home page.</p>
+<p>Of course there is also the possibility to enter a label for each of the 4 pages and the aligment for the values on the entities pages.</p>
+<h2 id="example-screenshots">Example Screenshots</h2>
+<p><img alt="Blueprint 01" src="../pics/ha_blueprint_01.png" />
+<img alt="Blueprint 02" src="../pics/ha_blueprint_02.png" />
+<img alt="Blueprint 03" src="../pics/ha_blueprint_03.png" />
+<img alt="Blueprint 04" src="../pics/ha_blueprint_04.png" />
+<img alt="Blueprint 05" src="../pics/ha_blueprint_05.png" /></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "navigation.top", "search.suggest", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7c377c4.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1684 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A custom firmware solution for the Sonoff NSPanel using HA Blueprint.">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../blueprint/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
+    
+    
+      
+        <title>Get Started - NSPanel Custom Firmware with HA Blueprint</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#getting-started-with-nspanel-ha-blueprint" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="NSPanel Custom Firmware with HA Blueprint" class="md-header__button md-logo" aria-label="NSPanel Custom Firmware with HA Blueprint" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NSPanel Custom Firmware with HA Blueprint
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Get Started
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="lime"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://illuzn.github.com/NSPanel_HA_Blueprint/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Illuzn
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  Installation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../blueprint/" class="md-tabs__link">
+        
+  
+    
+  
+  Blueprint
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../addon_climate/" class="md-tabs__link">
+          
+  
+  Advanced Customization
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../error_initializing/" class="md-tabs__link">
+          
+  
+  Troubleshooting
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="NSPanel Custom Firmware with HA Blueprint" class="md-nav__button md-logo" aria-label="NSPanel Custom Firmware with HA Blueprint" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    NSPanel Custom Firmware with HA Blueprint
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://illuzn.github.com/NSPanel_HA_Blueprint/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Illuzn
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Installation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Get Started
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Get Started
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#esphome-firmware" class="md-nav__link">
+    <span class="md-ellipsis">
+      ESPHome Firmware
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ESPHome Firmware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preparing-the-esphome-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparing the ESPHome Environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-a-device-on-esphome-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting Up a Device on ESPHome Dashboard
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flashing-the-device-for-the-first-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      Flashing the Device for the First Time
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Flashing the Device for the First Time">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#drive-safe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drive Safe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#required-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Required Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connecting-your-device-via-usb-to-serial-ttl-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connecting Your Device via USB-to-Serial TTL Interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transferring-the-firmware-to-your-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transferring the Firmware to Your Device
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integrating-your-panel-to-home-assistant" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integrating your panel to Home Assistant
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#making-changes-over-the-air-ota" class="md-nav__link">
+    <span class="md-ellipsis">
+      Making Changes Over The Air (OTA)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Making Changes Over The Air (OTA)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#steps-for-ota-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Steps for OTA Updates
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updating-your-nspanel-firmware" class="md-nav__link">
+    <span class="md-ellipsis">
+      Updating Your NSPanel Firmware
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migrating-from-other-custom-firmware" class="md-nav__link">
+    <span class="md-ellipsis">
+      Migrating from other custom firmware
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Migrating from other custom firmware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nspanel-lovelace-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      NSPanel Lovelace UI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upload-tft" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upload TFT
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Upload TFT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#select-the-right-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Select the right file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uploading-to-nextion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uploading to Nextion
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting-tft-transfer-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting TFT transfer issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blueprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      Blueprint
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Blueprint">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#importing-the-blueprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      Importing the Blueprint
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-an-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating an Automation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#editing-automation-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Editing Automation Settings
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-handle-multiple-panels" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to Handle Multiple Panels
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-configuration-for-esphome-and-home-assistant-experts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Configuration for ESPHome and Home Assistant Experts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Configuration for ESPHome and Home Assistant Experts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advanced-esphome-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced ESPHome Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-blueprint-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Blueprint Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-tft-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced TFT File
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-tips-and-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Tips and Resources
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#important-note" class="md-nav__link">
+    <span class="md-ellipsis">
+      Important Note
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lovelace_ui" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transitioning from Lovelace UI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blueprint/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blueprint
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Advanced Customization
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced Customization
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../addon_climate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Addon Climate (Direct Heat/ Cooling Control)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../alarm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Alarm Control Panel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../customization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    General
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Troubleshooting
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../error_initializing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Error Initializing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../esphome/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ESPHome Build Issues
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nspanel_blank/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Firmware Upload Issues
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../howto/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How Do I?
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tft_upload/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TFT Upload Issues
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../weather/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Weather
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="getting-started-with-nspanel-ha-blueprint">Getting Started with NSPanel HA Blueprint</h1>
+<p>Welcome to this setup guide, a community-driven approach to integrating NSPanel into your smart home.
+This guide is designed to be user-friendly, aiming to assist users who have a basic understanding of Home Assistant and ESPHome.
+While it's crafted to be accessible at all levels, a foundational knowledge in smart home automation will help you make the most of it.</p>
+<p>Whether you're taking your first steps in customizing your smart home or you're an enthusiast looking to further personalize your setup, this guide provides essential tools and instructions.
+Let’s embark on this journey together to create a smart home that’s uniquely yours.</p>
+<!-- markdownlint-disable MD028 -->
+<blockquote>
+<p>[!TIP]
+For troubleshooting TFT transfer issues, the most popular topic for new sers, please consult our <a href="../tft_upload/">TFT Transfer Troubleshooting Guide</a>.</p>
+<p>[!NOTE]
+We encourage users with absolute beginner-level knowledge in Home Assistant, ESPHome, or YAML editing to familiarize themselves with the basics of these platforms.
+Our community is here to support, but please note that this guide may not cover the fundamental aspects of Home Assistant and ESPHome extensively.</p>
+<p>[!NOTE]
+Some images or instructions on this guide might be slighly different due to different configurations depending on your ESPHome and Home Assistant implementation or versions.</p>
+<p>If you find something that is not understandable or needs to be updated, please let us know.
+You can create an issue reporting this, or fix it yourself and submit a <a href="https://github.com/Blackymas/NSPanel_HA_Blueprint/pulls">Pull Request</a> to this repository.</p>
+</blockquote>
+<!-- markdownlint-enable MD028 -->
+
+<h2 id="summary">Summary</h2>
+<ul>
+<li><a href="#preparation">Preparation</a></li>
+<li><a href="#esphome-firmware">ESPHome Firmware</a></li>
+<li><a href="#preparing-the-esphome-environment">Preparing the ESPHome Environment</a></li>
+<li><a href="#setting-up-a-device-on-esphome-dashboard">Setting Up a Device on ESPHome Dashboard</a></li>
+<li><a href="#flashing-the-device-for-the-first-time">Flashing the Device for the First Time</a></li>
+<li><a href="#integrating-your-panel-to-home-assistant">Integrating Your Panel to Home Assistant</a></li>
+<li><a href="#making-changes-over-the-air-ota">Making Changes Over The Air (OTA)</a></li>
+<li><a href="#updating-your-nspanel-firmware">Updating Your NSPanel Firmware</a></li>
+<li><a href="#migrating-from-other-custom-firmware">Migrating from Other Custom Firmware</a></li>
+<li><a href="#upload-tft">Upload TFT</a></li>
+<li><a href="#select-the-right-file">Select the Right File</a></li>
+<li><a href="#uploading-to-nextion">Uploading to Nextion</a></li>
+<li><a href="#troubleshooting-tft-transfer-issues">Troubleshooting TFT Transfer Issues</a></li>
+<li><a href="#blueprint">Blueprint</a></li>
+<li><a href="#importing-the-blueprint">Importing the Blueprint</a></li>
+<li><a href="#creating-an-automation">Creating an Automation</a></li>
+<li><a href="#editing-automation-settings">Editing Automation Settings</a></li>
+<li><a href="#how-to-handle-multiple-panels">How to Handle Multiple Panels</a></li>
+<li><a href="#advanced-configuration-for-esphome-and-home-assistant-experts">Advanced Configuration for ESPHome and Home Assistant Experts</a></li>
+<li><a href="#additional-tips-and-resources">Additional Tips and Resources</a></li>
+</ul>
+<hr />
+<h2 id="preparation">Preparation</h2>
+<p>Start by ensuring you have all the necessary tools and files.
+This includes your NSPanel device, a stable internet connection, and access to your Home Assistant instance.</p>
+<p>If flashing it for the first time, please look for additional preparation and tools on the
+<a href="#flashing-the-device-for-the-first-time">Flashing the device for the first time</a> section later in this guide.</p>
+<h2 id="esphome-firmware">ESPHome Firmware</h2>
+<h3 id="preparing-the-esphome-environment">Preparing the ESPHome Environment</h3>
+<p>To flash your NSPanel, ESPHome firmware is required.
+ESPHome can be integrated into your setup in various ways, including as a Home Assistant add-on or through a local installation on your computer.
+This guide is based on using the ESPHome dashboard, which is available in all standard implementations.</p>
+<ul>
+<li>
+<p><strong>Installing ESPHome as a Home Assistant Add-On</strong>: For seamless integration with Home Assistant, ESPHome can be installed as an add-on.
+This method provides an easy-to-navigate interface and direct integration with your Home Assistant setup.
+For detailed instructions on this installation method, refer to <a href="https://esphome.io/guides/getting_started_hassio">Getting Started with ESPHome and Home Assistant</a>.</p>
+</li>
+<li>
+<p><strong>Manual Installation of ESPHome</strong>: A manual installation on your computer might be preferred
+if your Home Assistant's host is resource-limited and struggles with compiling ESPHome projects.
+Standalone installations on a normal computer typically offer faster and more efficient compiling.
+This method is ideal if you're working with a system that doesn't support Home Assistant add-ons or if you prefer a separate management environment for your ESPHome devices.
+Detailed steps for a manual installation can be found in the guide <a href="https://esphome.io/guides/installing_esphome.html">Installing ESPHome Manually</a>.</p>
+</li>
+</ul>
+<h3 id="setting-up-a-device-on-esphome-dashboard">Setting Up a Device on ESPHome Dashboard</h3>
+<p>Follow these steps to add a new device in the ESPHome Dashboard:
+1. Click the <strong>+ New Device</strong> button.
+2. Enter a unique name for your new ESPHome device.<br />
+<img alt="New Device Name" src="../pics/ha_esphome_dashboard_new_device_01.png" />
+3. Select <strong>ESP32</strong> as the device type.<br />
+<img alt="Select ESP32" src="../pics/ha_esphome_dashboard_new_device_02.png" />
+4. Click <strong>Skip</strong> as we're not starting the installation yet.<br />
+<img alt="Skip Installation" src="../pics/ha_esphome_dashboard_new_device_03.png" />
+5. Locate your newly created device in the ESPHome Dashboard and click <strong>Edit</strong>.<br />
+<img alt="Edit Device" src="../pics/ha_esphome_dashboard_new_device_04.png" />
+6. (Optional) For enhanced security, consider copying the <code>api:</code> section to a temporary file.<br />
+<img alt="API Section" src="../pics/ha_esphome_dashboard_new_device_05.png" />
+7. Note the device name at the beginning of the file under <code>esphome</code>.<br />
+<img alt="Device Name" src="../pics/ha_esphome_dashboard_new_device_05b.png" />
+8. Clear all existing content and paste the following YAML configuration:
+    <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">substitutions</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="c1"># Settings - Editable values</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">device_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;YOUR_NSPANEL_NAME&quot;</span><span class="w"> </span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">wifi_ssid</span><span class="p">:</span><span class="w"> </span><span class="kt">!secret</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wifi_ssid</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">wifi_password</span><span class="p">:</span><span class="w"> </span><span class="kt">!secret</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wifi_password</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">nextion_update_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://homeassistant.local:8123/local/nspanel_eu.tft&quot;</span><span class="w">  </span><span class="c1"># Optional for `esp-idf` framework</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="c1"># Add-on configuration (if needed)</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="c1"># heater_relay: &quot;1&quot;  # Possible values: &quot;1&quot; or &quot;2&quot;</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># Customization area</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1">##### My customization - Start #####</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c1">##### My customization - End #####</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1"># Core and optional configurations</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="nt">packages</span><span class="p">:</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="nt">remote_package</span><span class="p">:</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/Blackymas/NSPanel_HA_Blueprint</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="nt">ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span><span class="nt">files</span><span class="p">:</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nspanel_esphome.yaml</span><span class="w"> </span><span class="c1"># Core package</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">      </span><span class="c1"># Optional advanced and add-on configurations</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">      </span><span class="c1"># - advanced/esphome/nspanel_esphome_advanced.yaml</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">      </span><span class="c1"># - nspanel_esphome_addon_climate_cool.yaml</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">      </span><span class="c1"># - nspanel_esphome_addon_climate_heat.yaml</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">      </span><span class="c1"># - nspanel_esphome_addon_climate_dual.yaml</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="nt">refresh</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">300s</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="nt">esp32</span><span class="p">:</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">  </span><span class="nt">framework</span><span class="p">:</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">esp-idf</span>
+</span></code></pre></div></p>
+<p><img alt="YAML Code" src="../pics/ha_esphome_dashboard_new_device_06.png" />
+9. Modify the <strong>Settings</strong> section with your device name (as noted in step 7) and Wi-Fi details.<br />
+<img alt="Edit Settings" src="../pics/ha_esphome_dashboard_new_device_06b.png" />
+10. For Wi-Fi credentials, use <code>!secret</code> for added security or input them directly.
+Learn about secrets in ESPHome: <a href="https://www.youtube.com/watch?v=eW4vKDeHh7Y">Home Assistant Secrets in ESPHome</a>.
+11. (Optionally when using <code>esp-idf</code>) Adjust <code>nextion_update_url</code> to the URL of a TFT file hosted on an HTTP or HTTPS server,
+    ensuring that the file is accessible to the NSPanel.
+    This URL will be used by ESPHome to download the TFT file to your panel.
+    For more information on hosting the TFT file and setting up the URL, see the <a href="#upload-tft">Upload TFT</a> section.</p>
+<div class="language-text highlight"><pre><span></span><code>&gt; [!CAUTION]
+&gt; **Prefer HTTP over HTTPS for File Transfer**  
+&gt; While you might encounter examples using HTTPS in URLs for file transfer,
+&gt; it is strongly recommended to use HTTP, especially when employing the `arduino` framework.
+&gt; The support for HTTPS in this context can be unstable,
+&gt; often leading to issues with file transfers.
+</code></pre></div>
+<ol>
+<li>
+<p>(Optional) Enhance security with API encryption by adding the copied key from step 6 to the <strong>My Customization</strong> area.</p>
+<blockquote>
+<p>[!TIP]
+You can get a new randomly generated valid key from <a href="https://esphome.io/components/api.html#configuration-variables">ESPHome Native API Component</a> page.</p>
+</blockquote>
+</li>
+<li>
+<p>After finalizing settings, click <strong>Save</strong> and close the YAML window.</p>
+</li>
+</ol>
+<p>Your NSPanel is now configured in your ESPHome Dashboard.</p>
+<h3 id="flashing-the-device-for-the-first-time">Flashing the Device for the First Time</h3>
+<h4 id="drive-safe">Drive Safe</h4>
+<!-- markdownlint-disable MD028 -->
+<blockquote>
+<p>[!CAUTION]
+<strong>Disconnect your panel's controller module from main power during all work.</strong><br />
+Operating on an open device that's plugged into the wall puts you at risk of electrocution.</p>
+<p>[!WARNING]
+<strong>You are solely responsible for your own safety.</strong><br />
+If you're uncomfortable or if something feels wrong, stop immediately.</p>
+</blockquote>
+<!-- markdownlint-enable MD028 -->
+
+<ul>
+<li>Use only electronic components rated for 3.3VDC. Ensure your TTL adapter is set to 3.3VDC. Exceeding this voltage can cause permanent damage to your panel.</li>
+<li>Maintain a clean work area to prevent damage to your device, especially the screen.</li>
+<li>Keep all small parts, like screws and cables, safely stored.</li>
+</ul>
+<h4 id="required-tools">Required Tools</h4>
+<p>For first-time flashing of your NSPanel with ESPHome, you may need:
+1. <a href="https://esphome.io/guides/physical_device_connection#usb-serial-adapter">USB-to-Serial TTL adapter</a>
+2. <a href="https://esphome.io/guides/physical_device_connection#jumper-wires">Jumper wires</a>
+3. <a href="https://esphome.io/guides/physical_device_connection#pcb-headers">Breakable headers (optional)</a>
+4. Appropriate screwdriver to disassemble your panel's controller module (touch plate)</p>
+<h4 id="connecting-your-device-via-usb-to-serial-ttl-interface">Connecting Your Device via USB-to-Serial TTL Interface</h4>
+<p>Before you begin disassembling your panel, it is recommended to review the following resources for guidance:
+- <a href="https://www.youtube.com/watch?v=jpSTA_ILB8g&amp;t=323s">YouTube - Mark Watt Tech - HOW TO - Setup the SIMPLEST Smart Home Scene Controller</a>
+- @blakadder's <a href="https://blakadder.com/nspanel-teardown/">Sonoff NSPanel EU Switch in Detail</a>
+- <a href="https://esphome.io/guides/physical_device_connection">ESPHome - Physically Connecting to Your Device</a></p>
+<p>While this guide does not cover the firmware transfer process in detail,
+here are some important points to consider during the setup:</p>
+<p><img alt="US model - Board to TTL wiring" src="../pics/us_board_ttl_wiring.jpg" />
+<img alt="US model - Board to TTL wiring (zoom)" src="../pics/us_board_ttl_wiring_zoom.jpg" />
+<img alt="TTL wiring (zoom)" src="../pics/us_ttl_wiring_zoom.jpg" /></p>
+<ol>
+<li>Handle with care the pins connecting the front panel (which includes the main board and screen) to the back part (the section mounted to the wall).
+These pins are fragile and can break or bend, potentially rendering your panel nonfunctional.</li>
+<li>Ensure that the pin <code>IO0</code> on the panel's board is connected to the <code>GND</code> pin on the back part connectors.
+This connection is necessary to put the ESP32 into firmware transfer mode.</li>
+<li>Before connecting the TTL adapter to your panel's board, verify that the adapter is set to output 3.3VDC.
+Using a voltage higher than 3.3VDC, such as 5VDC, can damage your panel.</li>
+<li>To avoid short circuits, consider moving the panel's board away from the metal backing of the display.
+The use of a non-conductive tool, like the blue plastic one shown in the picture, can be helpful.</li>
+<li>Note the cross-connection of <code>RX</code> and <code>TX</code> pins.
+    The following pin-out should be used:
+    <!-- markdownlint-disable MD033 -->
+      | Panel's Board | TTL USB-to-Serial |
+      | :--: | :--: |
+      | <code>3V3</code> | <code>VCC</code>, <code>3V3</code>, or <code>3.3V</code> |
+      | <code>TX</code>  | <code>RX</code>  |
+      | <code>RX</code>  | <code>TX</code>  |
+      | <code>GND</code> | <code>GND</code> |
+      | <code>IO0</code> | <code>GND</code><br>This can be connected to a <code>GND</code> pin on the panel's board. |
+    <!-- markdownlint-enable MD033 --></li>
+</ol>
+<p>By following these guidelines and referring to the provided resources, you can safely prepare your NSPanel for firmware updates.</p>
+<h4 id="transferring-the-firmware-to-your-device">Transferring the Firmware to Your Device</h4>
+<p>After ensuring your device is properly connected, proceed to update or install the firmware using the ESPHome Dashboard.</p>
+<ol>
+<li><strong>Access the ESPHome Dashboard</strong> and locate your NSPanel device.</li>
+<li><strong>Open the Installation Options:</strong> Click on the three-dot menu next to your device and select <strong>Install</strong>.</li>
+</ol>
+<p><img alt="ESPHome Dashboard Install Option" src="../pics/ha_esphome_dashboard_install_01.png" /></p>
+<ol>
+<li><strong>Choose the Installation Method:</strong></li>
+<li>If you're <strong>updating</strong> your panel, the <strong>Wirelessly</strong> option is typically the right choice.
+   This method will compile and transfer the firmware directly to your panel over Wi-Fi.</li>
+<li>
+<p>For <strong>initial installations</strong> or updates via a USB-to-Serial TTL adapter, select either <strong>Plug into this computer</strong> or <strong>Manual download</strong>.
+   Both these options will compile the firmware and prompt you to download it to your computer.</p>
+</li>
+<li>
+<p><strong>Transfer Firmware via USB-to-Serial TTL:</strong></p>
+</li>
+<li>Navigate to <a href="https://web.esphome.io/">ESPHome Web</a> on your computer.</li>
+<li>
+<p>Click <strong>Connect</strong> and choose the serial interface connected to your USB-to-Serial TTL adapter.</p>
+<p><img alt="ESPHome Web Interface" src="../pics/esphome_web_home.png" /></p>
+</li>
+<li>
+<p>Once connected, opt to install an existing firmware to your panel.
+   Select the compiled firmware file and initiate the installation.</p>
+</li>
+</ol>
+<p>The firmware installation process will take a few minutes.
+After completion, reassemble your panel and mount it back on the wall.
+Power it up, and it should appear online in the ESPHome Dashboard within a couple of minutes, running the latest firmware.</p>
+<h3 id="integrating-your-panel-to-home-assistant">Integrating your panel to Home Assistant</h3>
+<p>Once your panel loaded the new ESPHome firmware, it should be automatically detected by Home Assistant and you should get a notification about that.
+If that isn't happnening, you can manually add it as a new intgration with the following steps:</p>
+<blockquote>
+<p>[!TIP]
+You can use <a href="https://my.home-assistant.io/redirect/config_flow_start/?domain=esphome">this link</a>
+to go directly to the dialog to add a new ESPHome device,
+then you can go directly to step 3.</p>
+</blockquote>
+<ol>
+<li>Go to your <a href="https://my.home-assistant.io/redirect/integration/?domain=esphome">ESPHome integration's page</a> under <strong>Settings</strong> &gt; <strong>Devices &amp; Services</strong> &gt; <strong>ESPHome</strong>.</li>
+<li>If your panel is automatically discovered, just click <strong>Configure</strong>, otherwise, click on <strong>Add device</strong>.</li>
+<li>Enter your new panel's hostname or IP address and click <strong>Next</strong>.</li>
+<li>Follow the instructions from your Home Assistant to add your new panel.</li>
+</ol>
+<p>After that, you will have access to the <strong>Device's page</strong> related to your NSPanel.
+On that page you will find all the entities published by the ESPHome firmware installed in your panel,
+which can be use to see it's status and control some of it's settings.</p>
+<p>It might take a minute or two until the device's page gets fully populated, but when that is completed, take a look around and get familiar with that page.</p>
+<p>You can always get back to the device's page under your <a href="https://my.home-assistant.io/redirect/integration/?domain=esphome">ESPHome integration's page</a>.</p>
+<h3 id="making-changes-over-the-air-ota">Making Changes Over The Air (OTA)</h3>
+<p>Once your NSPanel is flashed with ESPHome, updating the firmware wirelessly via Over The Air (OTA) updates is a straightforward process.
+This method eliminates the need for a USB-to-serial TTL adapter for most firmware updates.</p>
+<h4 id="steps-for-ota-updates">Steps for OTA Updates</h4>
+<ol>
+<li>After making your changes in the yaml editor, click the <strong>Install</strong> button located at the top of the editor.
+Alternatively, you can click the three-dot menu next to your device on the ESPHome Dashboard and select <strong>Install</strong>.</li>
+</ol>
+<p><img alt="ESPHome Dashboard 3-dot Menu" src="../pics/ha_esphome_dashboard_3dot_menu.png" /></p>
+<ol>
+<li>A dialog box will appear with different installation options:</li>
+</ol>
+<p><img alt="ESPHome Dashboard Installation Options" src="../pics/ha_esphome_dashboard_install_01.png" /></p>
+<ol>
+<li>
+<p>Choose the first option to transfer the firmware <strong>Wirelessly</strong>.
+ESPHome will compile the firmware with the new settings and automatically transfer it to your device via Wi-Fi.</p>
+</li>
+<li>
+<p>The compilation and transfer process may take a few minutes.</p>
+</li>
+<li>Once complete, your panel will restart automatically with the new firmware.</li>
+</ol>
+<p>Using OTA for firmware updates is a time-efficient way to keep your NSPanel updated with the latest changes and enhancements, ensuring a smooth and hassle-free user experience.</p>
+<h3 id="updating-your-nspanel-firmware">Updating Your NSPanel Firmware</h3>
+<p>Regularly updating your NSPanel firmware ensures that you have the latest features and improvements from this project and ESPHome.
+To update your device's firmware to the latest version, simply follow the <a href="#steps-for-ota-updates">Steps for OTA Updates</a> as outlined above.</p>
+<blockquote>
+<p>[!IMPORTANT]<br />
+This project comprises three integral parts: ESPHome, the TFT file, and the Blueprint.
+It is crucial that all three components are updated to the same version to ensure compatibility and optimal performance.
+When updating the ESPHome firmware, make sure to also update the TFT file and the Blueprint to the corresponding version.</p>
+</blockquote>
+<p>Keeping each component of the NSPanel HA Blueprint in sync with the same version enhances the stability and functionality of your smart panel.</p>
+<h3 id="migrating-from-other-custom-firmware">Migrating from other custom firmware</h3>
+<p>The installation in a NSPanel with Sonoff's original firmware should be straighforward, however,
+if you have installed some other custom firmware before, you may have additional steps to execute.</p>
+<h4 id="nspanel-lovelace-ui">NSPanel Lovelace UI</h4>
+<p>If you have already installed on your NSPanel the "nspanel-lovelace-ui" firmware from @joBr99 or from Tasmota, an <a href="../lovelace_ui/">intermediate step</a> is necessary.
+Please execute that first before returning here.</p>
+<h4 id="other">Other</h4>
+<p>Please try the standard process and if you find any issue,
+please <a href="https://github.com/Blackymas/NSPanel_HA_Blueprint/issues">create a new issue</a> and inform
+which custom firmware you have installed before migrating to NSPanel HA Blueprint.</p>
+<h2 id="upload-tft">Upload TFT</h2>
+<p>The NSPanel utilizes a Nextion display, which is equipped with its own controller, memory, and firmware.
+This setup enables the display to render UI components and respond to commands sent from ESPHome.
+The firmware and UI elements for the Nextion display are compiled into a TFT file, which needs to be loaded onto the display for proper functionality.</p>
+<p>ESPHome manages the transfer of the TFT file to the Nextion display.
+It does this by connecting to an HTTP/HTTPS server, downloading the required TFT file, and then transferring it to the display.
+This process is crucial for updating or changing the UI and functionality of the display.</p>
+<p>In our GitHub repository, you can find all the necessary TFT files for this project, catering to different models of the NSPanel.
+These files are specifically designed to work with the various functionalities and features provided in each update of the NSPanel HA Blueprint.</p>
+<p>Make sure to select and upload the correct TFT file corresponding to your specific model of NSPanel to ensure smooth operation and access to all the latest features.</p>
+<blockquote>
+<p>[!TIP]
+For troubleshooting TFT transfer issues, consult our <a href="../tft_upload/">TFT Transfer Troubleshooting Guide</a>.</p>
+</blockquote>
+<h3 id="select-the-right-file">Select the right file</h3>
+<p>Open the device's page under <a href="https://my.home-assistant.io/redirect/integration/?domain=esphome">ESPHome integration's page</a>
+and look for <strong>Update TFT display</strong> and <strong>Update TFT display - Model</strong> under the <strong>Configuration</strong> area.</p>
+<p><img alt="image" src="../pics/ha_device_configuration_tft_upload_controls.png" /></p>
+<p>Expand the <strong>Update TFT display - Model</strong> control and find the model that better fits your panel:</p>
+<p><img alt="image" src="../pics/ha_device_configuration_tft_upload_model.png" /></p>
+<p>The options are:
+- <strong>Use <code>nextion_update_url</code>:</strong> This will indicate ESPHome to download the TFT file from the URL
+you specified in your panel's yaml setting under the ESPHome dashboard and is typically used
+when your device have issues to transfer a TFT file directly from the GitHub repository or when
+you want to use a custom TFT file hosted in your local server.
+This is the default option and this keeps the compatibility with legacy installations when this was the only option.
+- <strong>NSPanel Blank:</strong> This is a very small TFT file which just shows a pre-formatted QR code on the screen with a link to the instructions.
+Although it's not a functional TFT for controlling your panel, it can be usefull when you have
+issues in your first TFT upload, as it will remove the <em>Nextion Active Reparse Mode</em> used when
+a Sonoff's TFT and also when some other custom implementations are installed.
+- <strong>NSPanel EU:</strong> This should be used when you are using a Sonoff NSPanel EU model.
+- <strong>NSPanel US:</strong> This should be used when you are using a Sonoff NSPanel US model installed on
+it's normal (portrait) position with the buttons bellow the screen.
+- <strong>NSPanel US Landscape:</strong> This should be used when you are using a Sonoff NSPanel US model
+installed on the landscape position with the buttons at the right side of the screen.
+- <strong>NSPanel EU (CJK languages):</strong> This should be used when you are using a Sonoff NSPanel EU model
+and want to use the CJK (Chinese/Japanese/Korean) languages.
+- <strong>NSPanel US (CJK languages):</strong> This should be used when you are using a Sonoff NSPanel US model
+installed on it's normal (portrait) position with the buttons bellow the screen,
+and want to use the CJK (Chinese/Japanese/Korean) languages.
+- <strong>NSPanel US Landscape (CJK languages):</strong> This should be used when you are using a Sonoff NSPanel US model
+installed on the landscape position with the buttons at the right side of the screen,
+and want to use the CJK (Chinese/Japanese/Korean) languages.</p>
+<h3 id="uploading-to-nextion">Uploading to Nextion</h3>
+<p>Once the right model is selected, please press the button <strong>Update TFT display</strong>.</p>
+<p>In a few seconds your display should start transferring the file correspondent to the selected model.
+The transfer screen shows a progress bar with a percentage counter with a black background.</p>
+<p>If the transfer don't starts in a few seconds, ESPHome will retry automatically a few times, with different transfer parameters, so the transfer can take up to a minute to start.</p>
+<p>Once started, the transfer shouldn't take more than 10 to 20 minutes. If after this time it isn't close to finnish, please cancel the process by restarting your device, then try it again.</p>
+<blockquote>
+<p>[!TIP]
+For troubleshooting TFT transfer issues, consult our <a href="../tft_upload/">TFT Transfer Troubleshooting Guide</a>.</p>
+</blockquote>
+<h3 id="troubleshooting-tft-transfer-issues">Troubleshooting TFT transfer issues</h3>
+<p>We have an useful guide for <a href="../tft_upload/">troubleshooting TFT transfer issues</a>. Please take a look there.</p>
+<h2 id="blueprint">Blueprint</h2>
+<p>This section provides guidance on importing the NSPanel HA Blueprint from our GitHub repository into your Home Assistant,
+creating a new automation for your panel setup, and updating the blueprint when new versions are available.
+These processes are straightforward with the latest versions of Home Assistant.
+If you have any questions or need clarification, please reach out to us.</p>
+<h3 id="importing-the-blueprint">Importing the Blueprint</h3>
+<p>Importing the blueprint into Home Assistant is a simple process. Just click the button below and follow the steps:</p>
+<!-- markdownlint-disable MD013 -->
+<p><a href="https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fgithub.com%2FBlackymas%2FNSPanel_HA_Blueprint%2Fblob%2Fmain%2Fnspanel_blueprint.yaml"><img alt="Open your Home Assistant instance and show the blueprint import dialog with a specific blueprint pre-filled." src="https://my.home-assistant.io/badges/blueprint_import.svg" /></a></p>
+<!-- markdownlint-enable MD013 -->
+
+<h3 id="creating-an-automation">Creating an Automation</h3>
+<p>After importing the Blueprint into Home Assistant, create a new automation using these steps:</p>
+<ol>
+<li>Go to <a href="https://my.home-assistant.io/redirect/blueprints/"><strong>Settings</strong> → <strong>Automations &amp; Scenes</strong> → <strong>Blueprints</strong></a> in Home Assistant.</li>
+<li>Find the <strong>NSPanel Configuration</strong> Blueprint and click on it.</li>
+<li>In the Blueprint settings, select your panel in the <strong>NSPanel device</strong> field.</li>
+<li>Complete the relevant settings and click the <strong>Save</strong> button.</li>
+<li>Name your automation for easy identification and click <strong>Rename</strong>.
+   <img alt="image" src="../pics/ha_create_automation_rename.png" /></li>
+</ol>
+<blockquote>
+<p>[!TIP]
+For a comprehensive list of panel settings, refer to the <a href="../blueprint/">Blueprint Guide</a>.</p>
+</blockquote>
+<h3 id="editing-automation-settings">Editing Automation Settings</h3>
+<p>You can modify your automation anytime to change configurations:</p>
+<ol>
+<li>
+<p>In Home Assistant, go to <strong>Settings</strong> → <strong>Automations &amp; Scenes</strong>. Or use the link below.
+   <a href="https://my.home-assistant.io/redirect/automations/"><img alt="Open your Home Assistant instance and show your automations." src="https://my.home-assistant.io/badges/automations.svg" /></a></p>
+</li>
+<li>
+<p>Find your automation in the list and click on it to edit.</p>
+</li>
+<li>
+<p>After making changes, click <strong>Save</strong>. The new settings will be sent to your panel, usually within seconds. Some changes may require a page reload on the panel to appear.</p>
+</li>
+</ol>
+<blockquote>
+<p>[!TIP]
+For a comprehensive list of panel settings, refer to the <a href="../blueprint/">Blueprint Guide</a>.</p>
+</blockquote>
+<h2 id="how-to-handle-multiple-panels">How to Handle Multiple Panels</h2>
+<p>For homes with multiple panels:</p>
+<ol>
+<li>
+<p>Repeat the steps in the "Blueprint" section for each panel.</p>
+</li>
+<li>
+<p>Ensure each panel has a unique entry in the ESPHome Dashboard and in Home Assistant under <strong>Settings</strong> → <strong>Devices &amp; Services</strong> → <strong>ESPHome</strong>.</p>
+</li>
+<li>
+<p>Create a separate automation for each panel in Home Assistant.</p>
+</li>
+</ol>
+<blockquote>
+<p>[!IMPORTANT]
+Avoid assigning the same panel to multiple automations.
+This can cause unexpected behavior and put extra load on Home Assistant and your Wi-Fi network.
+Currently, Home Assistant does not have a mechanism to prevent this.</p>
+</blockquote>
+<h2 id="advanced-configuration-for-esphome-and-home-assistant-experts">Advanced Configuration for ESPHome and Home Assistant Experts</h2>
+<blockquote>
+<p>[!WARNING]
+Customizations and advanced mode are not supported by this project's team. Use them with caution and only if you have the necessary expertise.</p>
+</blockquote>
+<p>Before customizing your system, we encourage you to share any enhancements you make.
+Consider creating a <a href="https://github.com/Blackymas/NSPanel_HA_Blueprint/pulls">Pull Request</a> to the <code>dev</code> branch to share your discoveries with the community.</p>
+<h3 id="advanced-esphome-configuration">Advanced ESPHome Configuration</h3>
+<p>For advanced customization with ESPHome, start with "Customizations."
+We have a dedicated page for this, and your contributions are welcome: <a href="../customization/">Customization</a>.</p>
+<p>To use a local copy of <code>nspanel_esphome.yaml</code>, copy the file from GitHub to your local file system and include it in your ESPHome settings as follows:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">substitutions</span><span class="p">:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="c1"># Editable settings</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">device_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;YOUR_NSPANEL_NAME&quot;</span><span class="w"> </span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">wifi_ssid</span><span class="p">:</span><span class="w"> </span><span class="kt">!secret</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wifi_ssid</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">wifi_password</span><span class="p">:</span><span class="w"> </span><span class="kt">!secret</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wifi_password</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">nextion_update_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://homeassistant.local:8123/local/nspanel_eu.tft&quot;</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="c1"># Add-on configuration</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="c1"># heater_relay: &quot;1&quot; - possible values: 1/2</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1">##### My customization - Start #####</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="c1">##### My customization - End #####</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="nt">packages</span><span class="p">:</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">  </span><span class="nt">local_package</span><span class="p">:</span><span class="w"> </span><span class="kt">!include</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">packages/nspanel_esphome.yaml</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="nt">esp32</span><span class="p">:</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">  </span><span class="nt">framework</span><span class="p">:</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">esp-idf</span>
+</span></code></pre></div>
+<blockquote>
+<p>[!NOTE]
+A sub-folder is recommended to prevent the file from being added as an additional device in the ESPHome dashboard.
+Alternatively, you can name the file starting with <code>.</code> to exclude it from the device list.</p>
+</blockquote>
+<h3 id="advanced-blueprint-configuration">Advanced Blueprint Configuration</h3>
+<p>The Blueprint file <code>nspanel_blueprint.yaml</code> can be installed manually.
+You can also edit your local copy of the Blueprint, but be aware that reloading the Blueprint from the repository will overwrite local changes.</p>
+<h3 id="advanced-tft-file">Advanced TFT File</h3>
+<p>All <code>.HMI</code> files used in this project are available in our GitHub repository.
+Modify these files using the <a href="https://nextion.tech/nextion-editor/">Nextion Editor</a> and create your own <code>.tft</code> files for your device.</p>
+<p>For guidance on using Nextion, refer to:
+- <a href="https://nextion.tech/instruction-set">Nextion Instruction Set</a>
+- <a href="https://nextion.tech/editor_guide/">Nextion Editor Guide</a></p>
+<h2 id="additional-tips-and-resources">Additional Tips and Resources</h2>
+<blockquote>
+<p>[!TIP]
+For troubleshooting TFT transfer issues, consult our <a href="../tft_upload/">TFT Transfer Troubleshooting Guide</a> first.</p>
+</blockquote>
+<p>If problems persist after troubleshooting, visit the <a href="https://github.com/Blackymas/NSPanel_HA_Blueprint/issues">Issues</a> page.
+Feel free to create a new issue for personalized assistance, providing details such as:
+1. A description or picture of what is displayed on your screen.
+2. Information on whether you are updating from a previous version of this project, migrating from another NSPanel customization, or customizing a panel with the original Sonoff settings.
+3. ESPHome logs from the start of your panel to the point where the upload fails.
+4. A description of what you have already tried.</p>
+<h2 id="important-note">Important Note</h2>
+<p>Remember, these instructions serve as a guideline and may vary based on your specific setup and any systems previously installed.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "navigation.top", "search.suggest", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7c377c4.min.js"></script>
+      
+    
+  </body>
+</html>
