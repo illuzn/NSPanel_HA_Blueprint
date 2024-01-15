@@ -1,0 +1,59 @@
+site_name: NSPanel Custom Firmware with HA Blueprint
+repo_url: https://illuzn.github.com/NSPanel_HA_Blueprint/
+edit_uri: blob/main/docs/
+site_description: A custom firmware solution for the Sonoff NSPanel using HA Blueprint.
+nav:
+  - Home: index.md
+  - Get Started: get_started.md
+    - Transitioning from Lovelace UI: lovelace_ui
+  - Blueprint: blueprint.md
+  - Advanced Customization:
+    - Addon Climate (Direct Heat/ Cooling Control): addon_climate.md
+    - Alarm Control Panel: alarm.md
+    - General: customization.md
+  - Troubleshooting:
+    - Error Initializing: error_initializing.md
+    - ESPHome Build Issues: esphome.md
+    - Firmware Upload Issues: nspanel_blank.md
+    - How Do I?: howto.md
+    - TFT Upload Issues: tft_upload.md
+    - Weather: weather.md
+
+theme: 
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - navigation.top
+    - search.suggest
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+  language: en
+  palette:
+    - scheme: slate
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to light mode
+      primary: black
+      accent: indigo
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+      primary: teal
+      accent: lime
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.mark
+  - attr_list
