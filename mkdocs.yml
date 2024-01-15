@@ -4,7 +4,8 @@ edit_uri: blob/main/docs/
 site_description: A custom firmware solution for the Sonoff NSPanel using HA Blueprint.
 nav:
   - Home: index.md
-  - Get Started: get_started.md
+  - Installation:
+    - Get Started: get_started.md
     - Transitioning from Lovelace UI: lovelace_ui
   - Blueprint: blueprint.md
   - Advanced Customization:
